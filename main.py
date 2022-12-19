@@ -15,7 +15,7 @@ tc= crime_spain_df[crime_spain_df['Location']==locations[1]].groupby('Crime').su
 
 fig, ax = plt.subplots()
 startx, endx = min(years), max(years)
-starty, endy = min(list(crime_spain_df.groupby('Crime').sum()['Total cases'])), max(list(crime_spain_df.groupby('Crime').sum()['Total cases']))
+starty, endy = min(list(crime_spain_df.groupby('Crime').sum()['Total cases'])), 100
 
 ax.set(xlabel='Year',
        ylabel= 'Total Cases',
@@ -27,11 +27,6 @@ for crime in crimes:
         ax.plot(years,tc,label=crime)
 
 ax.legend(loc='best')
-plt.show()
-
-fig1, ax1 = plt.subplots()
-ax1.pie(tc,radius=1,labels=crimes)
-ax1.legend(loc=2)
 plt.show()
 
 
