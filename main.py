@@ -31,8 +31,10 @@ def plot_pie(location):
         total_loc_cases= crime_spain_df[crime_spain_df['Location']==location].groupby('Crime').sum()['Total cases']
 
         fig, ax = plt.subplots()
-        ax.pie(total_loc_cases,radius=1.2)
+        
+        ax.pie(total_loc_cases,radius=1,wedgeprops=dict(width=0.3,edgecolor='white'))
         ax.legend(crimes,loc=2)
+        ax.set_title = "Crimes in" +location
         plt.show()
 
 def plot_bars():
