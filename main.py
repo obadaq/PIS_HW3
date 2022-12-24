@@ -9,6 +9,7 @@ years = list(set(crime_spain_df['Year']))
 locations = list(set(crime_spain_df['Location']))
 a1 = crime_spain_df.groupby(['Location']).sum()['Total cases']
 
+
 def plot_trend():
         fig, ax = plt.subplots()
         startx, endx = min(years), max(years)
@@ -26,6 +27,7 @@ def plot_trend():
         ax.legend(loc='best')
         plt.show()
 
+
 def plot_pie(location):
 
         total_loc_cases= crime_spain_df[crime_spain_df['Location']==location].groupby('Crime').sum()['Total cases']
@@ -37,6 +39,7 @@ def plot_pie(location):
         ax.set_title = "Crimes in" +location
         plt.show()
 
+
 def plot_bars():
         plt.xlabel('Locations')
         plt.ylabel('Total Cases')
@@ -44,6 +47,7 @@ def plot_bars():
         plt.xticks(np.arange(len(locations)),rotation=45)
         plt.bar(locations,a1)
         plt.show()
+
 
 print('''
 1. show trends for crimes in spain (2019-2021)
@@ -56,7 +60,7 @@ if user_ch == 1:
         plot_trend()
 elif user_ch == 3:
         plot_bars()
-elif user_ch==2:
+elif user_ch == 2:
         print(locations)
         user_ch = input("Write a location to sho its data >>>  ")
         plot_pie(user_ch)
