@@ -12,7 +12,7 @@ locations = list(set(crime_spain_df['Location']))
 def plot_trend():
     i = 1
     for crime in crimes:
-        print(i , ' - ' , crime)
+        print(i, ' - ', crime)
         i += 1 
         
     user_ch = int(input('Enter a crime no. to show the trend for >> '))
@@ -22,7 +22,7 @@ def plot_trend():
     plt.ylabel('Total Cases') 
     plt.xticks(years)
     plt.title(crimes[user_ch - 1]+' in Spain Over Three Years')
-    plt.plot(years, tc, "or", years, tc, label= crimes[user_ch - 1])
+    plt.plot(years, tc, "or", years, tc, label=crimes[user_ch - 1])
     plt.show()
 
 
@@ -40,7 +40,7 @@ def plot_pie(location):
 def plot_bars():
 
     barWidth = 0.25
-    fig,axes = plt.subplots(2,1)
+    fig, axes = plt.subplots(2, 1)
  
     crime1_tc_bylocation = crime_spain_df[crime_spain_df['Crime'] == crimes[0]].groupby('Location').sum()['Total cases']
     crime2_tc_bylocation = crime_spain_df[crime_spain_df['Crime'] == crimes[1]].groupby('Location').sum()['Total cases']
@@ -50,29 +50,24 @@ def plot_bars():
     br2 = [x + barWidth for x in br1]
     br3 = [x + barWidth for x in br2]
 
-    axes[0].bar(br1, crime1_tc_bylocation, color ='r', width = barWidth,
-        edgecolor ='grey', label =crimes[0])
-    axes[0].bar(br1, crime2_tc_bylocation,bottom=crime1_tc_bylocation, color ='g', width = barWidth,
-        edgecolor ='grey', label =crimes[1])
-    axes[0].bar(br1, crime3_tc_bylocation,bottom=crime2_tc_bylocation+crime1_tc_bylocation, color ='b', width = barWidth,
-        edgecolor ='grey', label =crimes[2])
+    axes[0].bar(br1, crime1_tc_bylocation, color='r', width=barWidth, edgecolor='grey', label=crimes[0])
+    axes[0].bar(br1, crime2_tc_bylocation, bottom=crime1_tc_bylocation, color='g', width=barWidth,
+                edgecolor='grey', label=crimes[1])
+    axes[0].bar(br1, crime3_tc_bylocation, bottom=crime2_tc_bylocation+crime1_tc_bylocation, color='b', width=barWidth,
+                edgecolor='grey', label=crimes[2])
 
-    axes[0].set_xlabel('Locations', fontweight ='bold', fontsize = 15)
-    axes[0].set_ylabel('Total Cases', fontweight ='bold', fontsize = 15)
-    axes[0].set_xticks([r + barWidth for r in range(len(crime1_tc_bylocation))], locations,rotation= 45)
-    axes[0].set_title('Crime Comparison in Spain',fontweight='bold')
+    axes[0].set_xlabel('Locations', fontweight='bold', fontsize=15)
+    axes[0].set_ylabel('Total Cases', fontweight='bold', fontsize=15)
+    axes[0].set_xticks([r + barWidth for r in range(len(crime1_tc_bylocation))], locations, rotation=45)
+    axes[0].set_title('Crime Comparison in Spain', fontweight='bold')
     axes[0].legend()
 
-    axes[1].bar(br1, crime1_tc_bylocation, color ='r', width = barWidth,
-        edgecolor ='grey', label =crimes[0])
-    axes[1].bar(br2, crime2_tc_bylocation, color ='g', width = barWidth,
-        edgecolor ='grey', label =crimes[1])
-    axes[1].bar(br3, crime3_tc_bylocation, color ='b', width = barWidth,
-        edgecolor ='grey', label =crimes[2])
-
-    axes[1].set_xlabel('Locations', fontweight ='bold', fontsize = 15)
-    axes[1].set_ylabel('Total Cases', fontweight ='bold', fontsize = 15)
-    axes[1].set_xticks([r + barWidth for r in range(len(crime1_tc_bylocation))], locations,rotation= 45)
+    axes[1].bar(br1, crime1_tc_bylocation, color='r', width=barWidth, edgecolor='grey', label=crimes[0])
+    axes[1].bar(br2, crime2_tc_bylocation, color='g', width=barWidth, edgecolor='grey', label=crimes[1])
+    axes[1].bar(br3, crime3_tc_bylocation, color='b', width=barWidth, edgecolor='grey', label=crimes[2])
+    axes[1].set_xlabel('Locations', fontweight='bold', fontsize=15)
+    axes[1].set_ylabel('Total Cases', fontweight='bold', fontsize=15)
+    axes[1].set_xticks([r + barWidth for r in range(len(crime1_tc_bylocation))], locations, rotation=45)
     plt.show()
 
 
@@ -81,15 +76,15 @@ print('''
 2. show pie chart for crimes in a city of your choice
 3. show bar chart for total cases in spain with three RANDOM crimes 
 ''')
-user_ch = int(input('Enter your choice >>> '))
+user_sel = int(input('Enter your choice >>> '))
 
-if user_ch == 1:
+if user_sel == 1:
     plot_trend()
-elif user_ch == 3:
+elif user_sel == 3:
     plot_bars()
-elif user_ch == 2:
+elif user_sel == 2:
     print(locations)
-    user_ch = input("Write a location to sho its data >>>  ")
-    plot_pie(user_ch)
+    user_sel = input("Write a location to sho its data >>>  ")
+    plot_pie(user_sel)
 else:
     print("Run again ??")
