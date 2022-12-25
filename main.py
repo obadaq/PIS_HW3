@@ -18,10 +18,10 @@ def plot_trend():
     user_ch = int(input('Enter a crime no. to show the trend for >> '))
     tc = crime_spain_df[crime_spain_df['Crime'] == crimes[user_ch - 1]].groupby('Year').sum()['Total cases']
 
-    plt.xlabel='Year'
-    plt.ylabel='Total Cases' 
+    plt.xlabel('Year')
+    plt.ylabel('Total Cases') 
     plt.xticks(years)
-    plt.title='Crimes in Spain Over Three Years'
+    plt.title(crimes[user_ch - 1]+' in Spain Over Three Years')
     plt.plot(years, tc, "or", years, tc, label= crimes[user_ch - 1])
     plt.show()
 
@@ -33,7 +33,7 @@ def plot_pie(location):
     fig, ax = plt.subplots()
     ax.pie(total_loc_cases, radius=1, wedgeprops=dict(width=0.3, edgecolor='white'))
     ax.legend(crimes, loc=2)
-    ax.set_title = "Crimes in" + location
+    ax.set_title("Crimes in " + location)
     plt.show()
 
 
@@ -45,7 +45,6 @@ def plot_bars():
     crime1_tc_bylocation = crime_spain_df[crime_spain_df['Crime'] == crimes[0]].groupby('Location').sum()['Total cases']
     crime2_tc_bylocation = crime_spain_df[crime_spain_df['Crime'] == crimes[1]].groupby('Location').sum()['Total cases']
     crime3_tc_bylocation = crime_spain_df[crime_spain_df['Crime'] == crimes[2]].groupby('Location').sum()['Total cases']
-
 
     br1 = np.arange(len(crime1_tc_bylocation))
     br2 = [x + barWidth for x in br1]
