@@ -10,16 +10,19 @@ locations = list(set(crime_spain_df['Location']))
 
 
 def plot_trend():
-
-    fig, ax = plt.subplots()
-    ax.set(xlabel='Year', ylabel='Total Cases', title='Crimes in Spain Over Three Years')
-    ax.set_xticks(years)
-
+    i = 1
     for crime in crimes:
-        tc = crime_spain_df[crime_spain_df['Crime'] == crime].groupby('Year').sum()['Total cases']
-        ax.plot(years, tc, label=crime)
+        print(i , ' - ' , crime)
+        i += 1 
+        
+    user_ch = int(input('Enter a crime no. to show the trend for >> '))
+    tc = crime_spain_df[crime_spain_df['Crime'] == crimes[user_ch - 1]].groupby('Year').sum()['Total cases']
 
-    ax.legend(loc='best')
+    plt.xlabel='Year'
+    plt.ylabel='Total Cases' 
+    plt.xticks(years)
+    plt.title='Crimes in Spain Over Three Years'
+    plt.plot(years, tc, "or", years, tc, label= crimes[user_ch - 1])
     plt.show()
 
 
