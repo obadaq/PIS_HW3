@@ -10,7 +10,7 @@ crime_spain_df = pd.read_csv('crime_rate_Spain.csv')
 crimes = list(set(crime_spain_df['Crime']))
 years = list(set(crime_spain_df['Year']))
 locations = list(set(crime_spain_df['Location']))
-tc= crime_spain_df.groupby('Location').sum()['Total cases']
+#tc= crime_spain_df.groupby('Location').sum()['Total cases']
 
 
 # set width of bar
@@ -19,9 +19,9 @@ fig = plt.subplots(figsize =(12, 8))
  
 # set height of bar
 
-crime1_tc_bylocation = crime_spain_df[crime_spain_df['Crime']== crimes[0]].groupby('Location').sum()
-crime2_tc_bylocation = crime_spain_df[crime_spain_df['Crime']== crimes[1]].groupby('Location').sum()
-crime3_tc_bylocation = crime_spain_df[crime_spain_df['Crime']== crimes[2]].groupby('Location').sum()
+crime1_tc_bylocation = list(crime_spain_df[crime_spain_df['Crime'] == crimes[0]].groupby('Location').sum())
+crime2_tc_bylocation = list(crime_spain_df[crime_spain_df['Crime'] == crimes[1]].groupby('Location').sum())
+crime3_tc_bylocation = list(crime_spain_df[crime_spain_df['Crime'] == crimes[2]].groupby('Location').sum())
 
 # Set position of bar on X axis
 
@@ -41,8 +41,7 @@ plt.bar(br3, crime3_tc_bylocation, color ='b', width = barWidth,
 # Adding Xticks
 plt.xlabel('Locations', fontweight ='bold', fontsize = 15)
 plt.ylabel('Total Cases', fontweight ='bold', fontsize = 15)
-plt.xticks([r + barWidth for r in range(len(crime1_tc_bylocation))],
-        locations)
+plt.xticks([r + barWidth for r in range(len(crime1_tc_bylocation))], locations)
  
 plt.legend()
 plt.show()
